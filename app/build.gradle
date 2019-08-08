@@ -1,0 +1,53 @@
+apply plugin: "com.android.application"
+apply plugin: "kotlin-android"
+apply plugin: "kotlin-android-extensions"
+
+android {
+  compileSdkVersion 28
+
+  defaultConfig {
+    applicationId "com.eygraber.ccp"
+    minSdkVersion 21
+    targetSdkVersion 28
+    versionCode 1
+    versionName "1.0"
+    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+  }
+
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+    }
+  }
+
+  compileOptions {
+    sourceCompatibility 1.8
+    targetCompatibility 1.8
+  }
+}
+
+dependencies {
+  implementation project(":library")
+
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+
+  implementation deps.androidx.constraintLayout
+  implementation deps.androidx.core
+  implementation deps.androidx.recyclerView
+
+  implementation deps.androidx.ktx.core
+
+  implementation deps.google.material
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+  sourceCompatibility = JavaVersion.VERSION_1_8
+  targetCompatibility = JavaVersion.VERSION_1_8
+
+  kotlinOptions {
+    jvmTarget = "1.8"
+
+    allWarningsAsErrors = true
+  }
+}

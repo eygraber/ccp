@@ -1,0 +1,14 @@
+*~
+.DS_Store
+.idea
+.gradle
+*.iml
+/build
+target
+local.properties
+tmp
+captures
+
+test-sd-card.img
+
+node_modules

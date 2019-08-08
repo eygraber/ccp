@@ -1,0 +1,40 @@
+<resources>
+
+  <!-- Base application theme. -->
+  <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <item name="colorPrimary">@color/colorPrimary</item>
+    <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
+    <item name="colorSecondary">@color/colorSecondary</item>
+    <item name="colorSecondaryVariant">@color/colorSecondaryVariant</item>
+    <item name="android:colorBackground">@color/colorBackground</item>
+    <item name="colorSurface">@color/colorSurface</item>
+    <item name="colorError">@color/colorError</item>
+    <item name="colorOnPrimary">@color/colorOnPrimary</item>
+    <item name="colorOnSecondary">@color/colorOnSecondary</item>
+    <item name="colorOnBackground">@color/colorOnBackground</item>
+    <item name="colorOnSurface">@color/colorOnSurface</item>
+    <item name="colorOnError">@color/colorOnError</item>
+
+    <item name="textAppearanceHeadline6">@style/TextAppearanceHeadline6</item>
+    <item name="textAppearanceBody1">@style/TextAppearanceBody1</item>
+    <item name="textAppearanceBody2">@style/TextAppearanceBody2</item>
+    <item name="textAppearanceCaption">@style/TextAppearanceCaption</item>
+  </style>
+
+  <style name="TextAppearanceHeadline6" parent="TextAppearance.MaterialComponents.Headline6">
+    <item name="android:textColor">@color/brandBlack</item>
+  </style>
+
+  <style name="TextAppearanceBody1" parent="TextAppearance.MaterialComponents.Body1">
+    <item name="android:textColor">@color/brandBlack</item>
+  </style>
+
+  <style name="TextAppearanceBody2" parent="TextAppearance.MaterialComponents.Body2">
+    <item name="android:textColor">@color/brandBlack</item>
+  </style>
+
+  <style name="TextAppearanceCaption" parent="TextAppearance.MaterialComponents.Caption">
+    <item name="android:textColor">@color/brandBlack</item>
+  </style>
+
+</resources>

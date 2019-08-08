@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/brandBlue</color>
+    <color name="colorPrimaryVariant">@color/brandBlueTint</color>
+    <color name="colorSecondary">@color/interfaceGreen</color>
+    <color name="colorSecondaryVariant">@color/interfaceYellow</color>
+    <color name="colorBackground">@color/brandWhite</color>
+    <color name="colorSurface">@color/brandWhite</color>
+    <color name="colorError">@color/interfaceRedNotification</color>
+    <color name="colorOnPrimary">@color/brandWhite</color>
+    <color name="colorOnSecondary">@color/brandWhite</color>
+    <color name="colorOnBackground">@color/brandBlack</color>
+    <color name="colorOnSurface">@color/brandBlack</color>
+    <color name="colorOnError">@color/brandWhite</color>
+
+
+    <color name="brandBlue">#29B7E1</color>
+    <color name="brandBlueTint">#EAF8FC</color>
+
+    <color name="interfaceGreen">#59DD88</color>
+    <color name="interfaceRed">#E36272</color>
+    <color name="interfaceRedNotification">#FC4C63</color>
+    <color name="interfaceYellow">#FEB041</color>
+
+    <color name="brandBlack">#000</color>
+    <color name="brandDarkGrey">#4a4a4a</color>
+    <color name="brandGrey">#a2a2a2</color>
+    <color name="brandLightGrey">#d5d5d5</color>
+    <color name="brandWhiteGrey">#f9f9f9</color>
+    <color name="brandWhite">#fff</color>
+</resources>
