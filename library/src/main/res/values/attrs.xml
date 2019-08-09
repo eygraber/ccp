@@ -5,6 +5,7 @@
     <attr name="ccp_use_emoji_compat" format="boolean" />
     <attr name="ccp_show_flag" format="boolean" />
     <attr name="ccp_show_calling_code" format="boolean" />
+    <attr name="ccp_show_arrow" format="boolean" />
     <attr name="ccp_dialog_show_title" format="boolean" />
     <attr name="ccp_dialog_title" format="string|reference" />
     <attr name="ccp_dialog_show_search" format="boolean" />

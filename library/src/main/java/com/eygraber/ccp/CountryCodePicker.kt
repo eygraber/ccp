@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.isVisible
 import androidx.core.view.setPadding
 import androidx.emoji.text.EmojiCompat
 
@@ -76,6 +77,8 @@ class CountryCodePicker @JvmOverloads constructor(
     if(!ccpAttrs.showFlag && !ccpAttrs.showCallingCode) {
       throw IllegalArgumentException("Can't show nothing")
     }
+
+    arrow.isVisible = ccpAttrs.showArrow
 
     countries = Country.countries.buildCountryList(ccpAttrs)
 

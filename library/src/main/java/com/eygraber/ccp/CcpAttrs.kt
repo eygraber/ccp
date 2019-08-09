@@ -4,13 +4,14 @@ import android.content.Context
 import android.util.AttributeSet
 import androidx.core.content.res.use
 import androidx.core.os.ConfigurationCompat
-import java.util.Locale
+import java.util.*
 
 internal data class CcpAttrs(
   val defaultCountry: Country,
   val useEmojiCompat: Boolean,
   val showFlag: Boolean,
   val showCallingCode: Boolean,
+  val showArrow: Boolean,
   val dialogShowTitle: Boolean,
   val dialogTitle: String,
   val dialogShowSearch: Boolean,
@@ -40,6 +41,8 @@ internal data class CcpAttrs(
 
             showCallingCode = a.getBoolean(R.styleable.CountryCodePicker_ccp_show_calling_code, true),
 
+            showArrow = a.getBoolean(R.styleable.CountryCodePicker_ccp_show_arrow, true),
+
             dialogShowTitle = a.getBoolean(R.styleable.CountryCodePicker_ccp_dialog_show_title, true),
 
             dialogTitle = a.getString(R.styleable.CountryCodePicker_ccp_dialog_title)
@@ -68,6 +71,7 @@ internal data class CcpAttrs(
           useEmojiCompat = false,
           showFlag = true,
           showCallingCode = true,
+          showArrow = true,
           dialogShowTitle = true,
           dialogTitle = context.defaultDialogTitle,
           dialogShowSearch = true,
