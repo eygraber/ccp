@@ -1,4 +1,4 @@
-package com.eygraber.ccp
+package com.eygraber.ccp.sample
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

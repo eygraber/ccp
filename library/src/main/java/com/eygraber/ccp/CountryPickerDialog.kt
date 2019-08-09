@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
-import androidx.constraintlayout.widget.Group
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -38,12 +37,17 @@ internal class CountryPickerDialog(
   private val recyclerView = dialog.findViewById<RecyclerView>(R.id.countryList)!!
   private val fastScrollerView = dialog.findViewById<FastScrollerView>(R.id.fastscroller)!!
   private val fastScrollerThumbView = dialog.findViewById<FastScrollerThumbView>(R.id.fastscrollerThumb)!!
-  private val recyclerViewGroup = dialog.findViewById<Group>(R.id.countryListGroup)!!
   private val emptyView = dialog.findViewById<TextView>(R.id.emptyResults)!!
 
   private val parentView = titleView.parent as ViewGroup
 
-  private val countryAdapter = CountryAdapter(countryCodePicker, countries, emptyView, recyclerViewGroup).apply {
+  private val countryAdapter = CountryAdapter(countryCodePicker, countries) { newList ->
+    recyclerView.isVisible = newList.isNotEmpty()
+    fastScrollerView.isVisible = newList.isNotEmpty() && ccpAttrs.dialogShowFastScroller
+    fastScrollerThumbView.isVisible = newList.isNotEmpty() && ccpAttrs.dialogShowFastScroller
+
+    emptyView.isVisible = newList.isEmpty()
+  }.apply {
     setHasStableIds(true)
   }
 
@@ -55,15 +59,15 @@ internal class CountryPickerDialog(
 
   init {
     with(titleView) {
-      isVisible = ccpAttrs.showDialogTitle
+      isVisible = ccpAttrs.dialogShowTitle
       text = ccpAttrs.dialogTitle
     }
 
     with(searchView) {
-      isVisible = ccpAttrs.showDialogSearch
+      isVisible = ccpAttrs.dialogShowSearch
       hint = ccpAttrs.dialogSearchHint
 
-      if(ccpAttrs.showDialogSearch) {
+      if(ccpAttrs.dialogShowSearch) {
         observeSearch()
       }
     }
@@ -77,34 +81,39 @@ internal class CountryPickerDialog(
         layoutManager = LinearLayoutManager(context)
         adapter = countryAdapter
 
-        fastScrollerView.setupWithRecyclerView(
-          recyclerView,
-          getItemIndicator = { position ->
-            if(searchView.text.isNotEmpty()) {
-              null
-            } else if(countries[position].priority) {
-              FastScrollItemIndicator.Icon(R.drawable.ccp_ic_priority)
-            } else {
-              val item = countries[position]
-              val name = context.getString(item.name)
-              FastScrollItemIndicator.Text(
-                name.substring(0, 1).stripAccents().toUpperCase(Locale.getDefault())
-              )
+        if(ccpAttrs.dialogShowFastScroller) {
+          fastScrollerView.setupWithRecyclerView(
+            recyclerView,
+            getItemIndicator = { position ->
+              if(searchView.text.isNotEmpty()) {
+                null
+              } else if(countries[position].priority) {
+                FastScrollItemIndicator.Icon(R.drawable.ccp_ic_priority)
+              } else {
+                val item = countries[position]
+                val name = context.getString(item.name)
+                FastScrollItemIndicator.Text(
+                  name.substring(0, 1).stripAccents().toUpperCase(Locale.getDefault())
+                )
+              }
+            },
+            useDefaultScroller = false
+          )
+
+          fastScrollerThumbView.setupWithFastScroller(fastScrollerView)
+
+          fastScrollerView.itemIndicatorSelectedCallbacks += object : FastScrollerView.ItemIndicatorSelectedCallback {
+            override fun onItemIndicatorSelected(
+              indicator: FastScrollItemIndicator,
+              indicatorCenterY: Int,
+              itemPosition: Int
+            ) {
+              recyclerView.smoothSnapToPosition(itemPosition)
             }
-          },
-          useDefaultScroller = false
-        )
-
-        fastScrollerThumbView.setupWithFastScroller(fastScrollerView)
-
-        fastScrollerView.itemIndicatorSelectedCallbacks += object : FastScrollerView.ItemIndicatorSelectedCallback {
-          override fun onItemIndicatorSelected(
-            indicator: FastScrollItemIndicator,
-            indicatorCenterY: Int,
-            itemPosition: Int
-          ) {
-            recyclerView.smoothSnapToPosition(itemPosition)
           }
+        } else {
+          fastScrollerView.isVisible = false
+          fastScrollerThumbView.isVisible = false
         }
       }
     }

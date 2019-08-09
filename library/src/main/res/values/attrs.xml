@@ -9,6 +9,7 @@
     <attr name="ccp_dialog_title" format="string|reference" />
     <attr name="ccp_dialog_show_search" format="boolean" />
     <attr name="ccp_dialog_search_hint" format="string|reference" />
+    <attr name="ccp_dialog_show_fast_scroller" format="boolean" />
     <attr name="ccp_dialog_empty_view_text" format="string|reference" />
     <attr name="ccp_dialog_priority_countries" format="string" />
     <attr name="ccp_dialog_include_countries" format="string" />

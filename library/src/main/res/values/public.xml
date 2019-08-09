@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+  <public name="ccp_default_country" format="reference" />
+  <public name="ccp_use_emoji_compat" format="reference" />
+  <public name="ccp_show_flag" format="reference" />
+  <public name="ccp_show_calling_code" format="reference" />
+  <public name="ccp_dialog_show_title" format="reference" />
+  <public name="ccp_dialog_title" format="reference" />
+  <public name="ccp_dialog_show_search" format="reference" />
+  <public name="ccp_dialog_search_hint" format="reference" />
+  <public name="ccp_dialog_show_fast_scroller" format="reference" />
+  <public name="ccp_dialog_empty_view_text" format="reference" />
+  <public name="ccp_dialog_priority_countries" format="reference" />
+  <public name="ccp_dialog_include_countries" format="reference" />
+  <public name="ccp_dialog_exclude_countries" format="reference" />
 
+  <public name="ccp_ic_arrow_drop_down" format="reference" />
+  <public name="ccp_ic_clear_search" format="reference" />
+  <public name="ccp_ic_priority" format="reference" />
 </resources>

@@ -16,8 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 internal class CountryAdapter(
   private val countryCodePicker: CountryCodePicker,
   private val countries: List<Country>,
-  private val emptyView: View,
-  private val recyclerViewGroup: Group
+  private val onListChanged: (List<Country>) -> Unit
 ) : ListAdapter<Country, VH>(diffCallback) {
   init {
     submitList(countries)
@@ -50,8 +49,6 @@ internal class CountryAdapter(
 
   fun updateSearch(search: CharSequence) {
     if(search.isBlank()) {
-      emptyView.isVisible = false
-      recyclerViewGroup.isVisible = true
       submitList(countries)
       return
     }
@@ -73,8 +70,7 @@ internal class CountryAdapter(
   override fun onCurrentListChanged(previousList: MutableList<Country>, currentList: MutableList<Country>) {
     super.onCurrentListChanged(previousList, currentList)
 
-    recyclerViewGroup.isVisible = currentList.isNotEmpty()
-    emptyView.isVisible = currentList.isEmpty()
+    onListChanged(currentList)
   }
 
   companion object {

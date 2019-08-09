@@ -11,10 +11,11 @@ data class CcpAttrs(
   val useEmojiCompat: Boolean,
   val showFlag: Boolean,
   val showCallingCode: Boolean,
-  val showDialogTitle: Boolean,
+  val dialogShowTitle: Boolean,
   val dialogTitle: String,
-  val showDialogSearch: Boolean,
+  val dialogShowSearch: Boolean,
   val dialogSearchHint: String,
+  val dialogShowFastScroller: Boolean,
   val dialogEmptyViewText: String,
   val dialogPriorityCountries: Set<String>,
   val dialogIncludeCountries: Set<String>,
@@ -39,15 +40,17 @@ data class CcpAttrs(
 
             showCallingCode = a.getBoolean(R.styleable.CountryCodePicker_ccp_show_calling_code, true),
 
-            showDialogTitle = a.getBoolean(R.styleable.CountryCodePicker_ccp_dialog_show_title, true),
+            dialogShowTitle = a.getBoolean(R.styleable.CountryCodePicker_ccp_dialog_show_title, true),
 
             dialogTitle = a.getString(R.styleable.CountryCodePicker_ccp_dialog_title)
               ?: context.defaultDialogTitle,
 
-            showDialogSearch = a.getBoolean(R.styleable.CountryCodePicker_ccp_dialog_show_search, true),
+            dialogShowSearch = a.getBoolean(R.styleable.CountryCodePicker_ccp_dialog_show_search, true),
 
             dialogSearchHint = a.getString(R.styleable.CountryCodePicker_ccp_dialog_search_hint)
               ?: context.defaultDialogSearchHint,
+
+            dialogShowFastScroller = a.getBoolean(R.styleable.CountryCodePicker_ccp_dialog_show_fast_scroller, true),
 
             dialogEmptyViewText = a.getString(R.styleable.CountryCodePicker_ccp_dialog_empty_view_text)
               ?: context.defaultDialogEmptyViewText,
@@ -65,10 +68,11 @@ data class CcpAttrs(
           useEmojiCompat = false,
           showFlag = true,
           showCallingCode = true,
-          showDialogTitle = true,
+          dialogShowTitle = true,
           dialogTitle = context.defaultDialogTitle,
-          showDialogSearch = true,
+          dialogShowSearch = true,
           dialogSearchHint = context.defaultDialogSearchHint,
+          dialogShowFastScroller = true,
           dialogEmptyViewText = context.defaultDialogEmptyViewText,
           dialogPriorityCountries = emptySet(),
           dialogIncludeCountries = emptySet(),

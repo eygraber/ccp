@@ -1,5 +1,8 @@
 apply plugin: "com.android.library"
 apply plugin: "kotlin-android"
+apply plugin: "com.github.dcendents.android-maven"
+apply plugin: "com.jfrog.bintray"
+apply plugin: "org.jetbrains.dokka"
 
 android {
   compileSdkVersion 28
@@ -52,3 +55,5 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
     allWarningsAsErrors = true
   }
 }
+
+apply from: project.file('publishing.gradle')

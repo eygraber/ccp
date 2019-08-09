@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.eygraber.ccp">
+  package="com.eygraber.ccp.sample">
 
   <application
     android:theme="@style/AppTheme"
@@ -12,7 +12,7 @@
 
     <activity
       android:theme="@style/AppTheme"
-      android:name="com.eygraber.ccp.MainActivity">
+      android:name=".MainActivity">
 
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />

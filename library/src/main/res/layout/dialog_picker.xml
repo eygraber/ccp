@@ -14,7 +14,6 @@
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     android:layout_margin="10dp"
-    android:textColor="?attr/colorOnSurface"
     tools:text="@string/default_dialog_title" />
 
   <EditText
@@ -28,7 +27,6 @@
     android:inputType="textNoSuggestions"
     android:imeOptions="actionSearch"
     android:maxLines="1"
-    android:textColor="?attr/colorOnSurface"
     android:textColorHint="?android:textColorHint"
     android:backgroundTint="?attr/colorPrimary"
     tools:hint="@string/default_dialog_search_hint"
@@ -80,13 +78,6 @@
     app:layout_constraintBottom_toBottomOf="@+id/fastscroller"
     android:layout_marginEnd="16dp" />
 
-  <androidx.constraintlayout.widget.Group
-    android:id="@+id/countryListGroup"
-    android:layout_width="0dp"
-    android:layout_height="0dp"
-    android:visibility="visible"
-    app:constraint_referenced_ids="countryList,fastscroller,fastscrollerThumb" />
-
   <TextView
     android:id="@+id/emptyResults"
     style="?attr/textAppearanceCaption"
@@ -96,7 +87,6 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     android:layout_marginTop="16dp"
-    android:textColor="?attr/colorOnSurface"
     android:visibility="gone"
     tools:text="No result found" />
 

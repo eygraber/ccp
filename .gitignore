@@ -6,6 +6,7 @@
 /build
 target
 local.properties
+local.gradle
 tmp
 captures
 
