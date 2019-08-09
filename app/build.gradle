@@ -32,9 +32,8 @@ dependencies {
 
   implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
-  implementation deps.androidx.constraintLayout
   implementation deps.androidx.core
-  implementation deps.androidx.recyclerView
+  implementation deps.androidx.emoji
 
   implementation deps.androidx.ktx.core
 

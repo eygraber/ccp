@@ -13,8 +13,8 @@
     android:layout_height="wrap_content"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintBottom_toTopOf="@+id/search"
     android:layout_margin="10dp"
+    android:textColor="?attr/colorOnSurface"
     tools:text="@string/default_dialog_title" />
 
   <EditText
@@ -25,11 +25,14 @@
     app:layout_constraintTop_toBottomOf="@+id/title"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toStartOf="@+id/clearSearch"
-    app:layout_constraintBottom_toTopOf="@+id/countryListBarrier"
     android:inputType="textNoSuggestions"
     android:imeOptions="actionSearch"
     android:maxLines="1"
-    tools:hint="@string/default_dialog_search_hint" />
+    android:textColor="?attr/colorOnSurface"
+    android:textColorHint="?android:textColorHint"
+    android:backgroundTint="?attr/colorPrimary"
+    tools:hint="@string/default_dialog_search_hint"
+    android:textCursorDrawable="@null" />
 
   <ImageView
     android:id="@+id/clearSearch"
@@ -47,23 +50,15 @@
     android:clickable="true"
     android:focusable="true" />
 
-  <androidx.constraintlayout.widget.Barrier
-    android:id="@+id/countryListBarrier"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    app:barrierAllowsGoneWidgets="true"
-    app:barrierDirection="top"
-    app:constraint_referenced_ids="countryList" />
-
   <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/countryList"
     android:layout_width="0dp"
-    android:layout_height="0dp"
+    android:layout_height="wrap_content"
     app:layout_constraintTop_toBottomOf="@+id/search"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toStartOf="@+id/fastscroller"
     app:layout_constraintBottom_toBottomOf="parent"
-    android:dividerHeight="2dp"
+    app:layout_constrainedHeight="true"
     tools:listitem="@layout/dialog_country_item" />
 
   <com.reddit.indicatorfastscroll.FastScrollerView
@@ -77,7 +72,7 @@
     app:layout_constraintHorizontal_bias="1" />
 
   <com.reddit.indicatorfastscroll.FastScrollerThumbView
-    android:id="@+id/fastscroller_thumb"
+    android:id="@+id/fastscrollerThumb"
     android:layout_width="40dp"
     android:layout_height="0dp"
     app:layout_constraintTop_toTopOf="@+id/fastscroller"
@@ -86,20 +81,22 @@
     android:layout_marginEnd="16dp" />
 
   <androidx.constraintlayout.widget.Group
+    android:id="@+id/countryListGroup"
     android:layout_width="0dp"
     android:layout_height="0dp"
     android:visibility="visible"
-    app:constraint_referenced_ids="countryList,fastscroller,fastscroller_thumb" />
+    app:constraint_referenced_ids="countryList,fastscroller,fastscrollerThumb" />
 
   <TextView
     android:id="@+id/emptyResults"
     style="?attr/textAppearanceCaption"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_height="40dp"
     app:layout_constraintTop_toBottomOf="@+id/search"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     android:layout_marginTop="16dp"
+    android:textColor="?attr/colorOnSurface"
     android:visibility="gone"
     tools:text="No result found" />
 

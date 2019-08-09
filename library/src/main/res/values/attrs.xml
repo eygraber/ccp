@@ -2,7 +2,12 @@
 <resources>
   <declare-styleable name="CountryCodePicker">
     <attr name="ccp_default_country" format="string" />
+    <attr name="ccp_use_emoji_compat" format="boolean" />
+    <attr name="ccp_show_flag" format="boolean" />
+    <attr name="ccp_show_calling_code" format="boolean" />
+    <attr name="ccp_dialog_show_title" format="boolean" />
     <attr name="ccp_dialog_title" format="string|reference" />
+    <attr name="ccp_dialog_show_search" format="boolean" />
     <attr name="ccp_dialog_search_hint" format="string|reference" />
     <attr name="ccp_dialog_empty_view_text" format="string|reference" />
     <attr name="ccp_dialog_priority_countries" format="string" />

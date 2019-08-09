@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="colorPrimary">@color/brandBlue</color>
+  <color name="colorPrimaryVariant">@color/brandBlueTint</color>
+  <color name="colorSecondary">@color/interfaceGreen</color>
+  <color name="colorSecondaryVariant">@color/interfaceYellow</color>
+  <color name="colorBackground">@color/brandBlack</color>
+  <color name="colorSurface">@color/brandDarkGrey</color>
+  <color name="colorError">@color/interfaceRedNotification</color>
+  <color name="colorOnPrimary">@color/brandWhite</color>
+  <color name="colorOnSecondary">@color/brandWhite</color>
+  <color name="colorOnBackground">@color/brandWhite</color>
+  <color name="colorOnSurface">@color/brandWhite</color>
+  <color name="colorOnError">@color/brandWhite</color>
+</resources>

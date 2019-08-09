@@ -4,10 +4,16 @@ import android.content.Context
 import android.util.AttributeSet
 import androidx.core.content.res.use
 import androidx.core.os.ConfigurationCompat
+import java.util.Locale
 
 data class CcpAttrs(
-  val defaultCountry: String,
+  val defaultCountry: Country,
+  val useEmojiCompat: Boolean,
+  val showFlag: Boolean,
+  val showCallingCode: Boolean,
+  val showDialogTitle: Boolean,
   val dialogTitle: String,
+  val showDialogSearch: Boolean,
   val dialogSearchHint: String,
   val dialogEmptyViewText: String,
   val dialogPriorityCountries: Set<String>,
@@ -19,12 +25,26 @@ data class CcpAttrs(
       attrs?.let { attributes ->
         theme.obtainStyledAttributes(attributes, R.styleable.CountryCodePicker, 0, 0).use { a ->
           CcpAttrs(
-            defaultCountry = a.getString(R.styleable.CountryCodePicker_ccp_default_country)
+            defaultCountry = (a.getString(R.styleable.CountryCodePicker_ccp_default_country)
+              ?.toLowerCase(Locale.US)
               ?.takeIf { it in Country.countries }
-              ?: defaultLocale.country,
+              ?: defaultCountry)
+              .let { countryCode ->
+                Country.countries.getValue(countryCode)
+              },
+
+            useEmojiCompat = a.getBoolean(R.styleable.CountryCodePicker_ccp_use_emoji_compat, false),
+
+            showFlag = a.getBoolean(R.styleable.CountryCodePicker_ccp_show_flag, true),
+
+            showCallingCode = a.getBoolean(R.styleable.CountryCodePicker_ccp_show_calling_code, true),
+
+            showDialogTitle = a.getBoolean(R.styleable.CountryCodePicker_ccp_dialog_show_title, true),
 
             dialogTitle = a.getString(R.styleable.CountryCodePicker_ccp_dialog_title)
               ?: context.defaultDialogTitle,
+
+            showDialogSearch = a.getBoolean(R.styleable.CountryCodePicker_ccp_dialog_show_search, true),
 
             dialogSearchHint = a.getString(R.styleable.CountryCodePicker_ccp_dialog_search_hint)
               ?: context.defaultDialogSearchHint,
@@ -41,8 +61,13 @@ data class CcpAttrs(
         }
       }
         ?: CcpAttrs(
-          defaultCountry = context.defaultLocale.country,
+          defaultCountry = Country.countries.getValue(context.defaultCountry),
+          useEmojiCompat = false,
+          showFlag = true,
+          showCallingCode = true,
+          showDialogTitle = true,
           dialogTitle = context.defaultDialogTitle,
+          showDialogSearch = true,
           dialogSearchHint = context.defaultDialogSearchHint,
           dialogEmptyViewText = context.defaultDialogEmptyViewText,
           dialogPriorityCountries = emptySet(),
@@ -57,11 +82,18 @@ private val Context.defaultDialogTitle get() = getString(R.string.default_dialog
 private val Context.defaultDialogSearchHint get() = getString(R.string.default_dialog_search_hint)
 private val Context.defaultDialogEmptyViewText get() = getString(R.string.default_dialog_empty_view_text)
 
-private val Context.defaultLocale get() = ConfigurationCompat.getLocales(resources.configuration).get(0)
+private val Context.defaultCountry
+  get() =
+    ConfigurationCompat
+      .getLocales(resources.configuration)
+      .get(0)
+      .country
+      .toLowerCase(Locale.US)
 
 private fun String?.csvToSet() =
   this
     ?.split(",")
+    ?.map { it.toLowerCase(Locale.US) }
     ?.filter { it in Country.countries }
     ?.toSet()
     ?: emptySet()
