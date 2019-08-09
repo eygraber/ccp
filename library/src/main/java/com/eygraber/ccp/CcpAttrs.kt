@@ -6,7 +6,7 @@ import androidx.core.content.res.use
 import androidx.core.os.ConfigurationCompat
 import java.util.Locale
 
-data class CcpAttrs(
+internal data class CcpAttrs(
   val defaultCountry: Country,
   val useEmojiCompat: Boolean,
   val showFlag: Boolean,
