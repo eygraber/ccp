@@ -2,11 +2,11 @@
 
 package com.eygraber.ccp
 
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.constraintlayout.widget.Group
 import androidx.core.view.isVisible
 import androidx.emoji.text.EmojiCompat
 import androidx.recyclerview.widget.DiffUtil
@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 internal class CountryAdapter(
   private val countryCodePicker: CountryCodePicker,
   private val countries: List<Country>,
+  private val ccpAttrs: CcpAttrs,
   private val onListChanged: (List<Country>) -> Unit
 ) : ListAdapter<Country, VH>(diffCallback) {
   init {
@@ -32,7 +33,12 @@ internal class CountryAdapter(
   override fun getItemId(position: Int): Long = getItem(position).name.toLong()
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH =
-    VH(LayoutInflater.from(parent.context).inflate(R.layout.dialog_country_item, parent, false))
+    VH(LayoutInflater.from(parent.context).inflate(R.layout.dialog_country_item, parent, false)).apply {
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        ccpAttrs.dialogCountryTextAppearance?.let { country.setTextAppearance(it) }
+        ccpAttrs.dialogCountryCodeTextAppearance?.let { code.setTextAppearance(it) }
+      }
+    }
 
   override fun onBindViewHolder(holder: VH, position: Int) {
     holder.itemView.setTag(R.id.ccp_selected_country_position, position)
@@ -40,7 +46,12 @@ internal class CountryAdapter(
 
     val country = getItem(position)
     val name = holder.itemView.context.getString(country.name)
-    val flag = emoji?.process(country.flag) ?: country.flag
+    val flag = try {
+      emoji?.process(country.flag) ?: country.flag
+    }
+    catch(_: Throwable) {
+      country.flag
+    }
 
     holder.country.text = "$flag $name"
     holder.code.text = "+${country.callingCode}"

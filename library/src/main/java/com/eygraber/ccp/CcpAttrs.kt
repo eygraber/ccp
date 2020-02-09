@@ -20,7 +20,10 @@ internal data class CcpAttrs(
   val dialogEmptyViewText: String,
   val dialogPriorityCountries: Set<String>,
   val dialogIncludeCountries: Set<String>,
-  val dialogExcludeCountries: Set<String>
+  val dialogExcludeCountries: Set<String>,
+  val dialogCountryTextAppearance: Int?,
+  val dialogCountryCodeTextAppearance: Int?,
+  val dialogFastScrollTextAppearance: Int?
 ) {
   companion object {
     fun fromAttrs(context: Context, attrs: AttributeSet?) = with(context) {
@@ -62,7 +65,13 @@ internal data class CcpAttrs(
 
             dialogIncludeCountries = a.getString(R.styleable.CountryCodePicker_ccp_dialog_include_countries).csvToSet(),
 
-            dialogExcludeCountries = a.getString(R.styleable.CountryCodePicker_ccp_dialog_exclude_countries).csvToSet()
+            dialogExcludeCountries = a.getString(R.styleable.CountryCodePicker_ccp_dialog_exclude_countries).csvToSet(),
+
+            dialogCountryTextAppearance = a.getResourceId(R.styleable.CountryCodePicker_ccp_dialog_country_text_appearance, -1).takeIf { it != -1 },
+
+            dialogCountryCodeTextAppearance = a.getResourceId(R.styleable.CountryCodePicker_ccp_dialog_country_code_text_appearance, -1).takeIf { it != -1 },
+
+            dialogFastScrollTextAppearance = a.getResourceId(R.styleable.CountryCodePicker_ccp_dialog_fast_scroll_text_appearance, -1).takeIf { it != -1 }
           )
         }
       }
@@ -80,7 +89,10 @@ internal data class CcpAttrs(
           dialogEmptyViewText = context.defaultDialogEmptyViewText,
           dialogPriorityCountries = emptySet(),
           dialogIncludeCountries = emptySet(),
-          dialogExcludeCountries = emptySet()
+          dialogExcludeCountries = emptySet(),
+          dialogCountryTextAppearance = null,
+          dialogCountryCodeTextAppearance = null,
+          dialogFastScrollTextAppearance = null
         )
     }
   }

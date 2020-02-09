@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.reddit.indicatorfastscroll.FastScrollItemIndicator
 import com.reddit.indicatorfastscroll.FastScrollerThumbView
 import com.reddit.indicatorfastscroll.FastScrollerView
-import java.util.Locale
+import java.util.*
 
 internal class CountryPickerDialog(
   countryCodePicker: CountryCodePicker,
@@ -41,7 +41,7 @@ internal class CountryPickerDialog(
 
   private val parentView = titleView.parent as ViewGroup
 
-  private val countryAdapter = CountryAdapter(countryCodePicker, countries) { newList ->
+  private val countryAdapter = CountryAdapter(countryCodePicker, countries, ccpAttrs) { newList ->
     recyclerView.isVisible = newList.isNotEmpty()
     fastScrollerView.isVisible = newList.isNotEmpty() && ccpAttrs.dialogShowFastScroller
     fastScrollerThumbView.isVisible = newList.isNotEmpty() && ccpAttrs.dialogShowFastScroller
@@ -58,6 +58,10 @@ internal class CountryPickerDialog(
   private val cancelRunnable = CancelSearchRunnable()
 
   init {
+    ccpAttrs.dialogFastScrollTextAppearance?.let { res ->
+      fastScrollerView.textAppearanceRes = res
+    }
+
     with(titleView) {
       isVisible = ccpAttrs.dialogShowTitle
       text = ccpAttrs.dialogTitle

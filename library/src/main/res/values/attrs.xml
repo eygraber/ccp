@@ -15,5 +15,8 @@
     <attr name="ccp_dialog_priority_countries" format="string" />
     <attr name="ccp_dialog_include_countries" format="string" />
     <attr name="ccp_dialog_exclude_countries" format="string" />
+    <attr name="ccp_dialog_country_text_appearance" format="reference" />
+    <attr name="ccp_dialog_country_code_text_appearance" format="reference" />
+    <attr name="ccp_dialog_fast_scroll_text_appearance" format="reference" />
   </declare-styleable>
 </resources>

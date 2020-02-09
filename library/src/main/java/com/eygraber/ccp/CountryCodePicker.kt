@@ -92,7 +92,7 @@ class CountryCodePicker @JvmOverloads constructor(
     renderSelectedCountry()
   }
 
-  override fun setOnClickListener(listener: OnClickListener) {
+  override fun setOnClickListener(listener: OnClickListener?) {
     clickListener = listener
   }
 
@@ -113,11 +113,18 @@ class CountryCodePicker @JvmOverloads constructor(
     with(selectedCountry) {
       with(StringBuilder()) {
         if(ccpAttrs.showFlag) {
-          if(ccpAttrs.useEmojiCompat && emoji != null) {
-            append(emoji.process(flag))
+          val flagToDisplay = if(ccpAttrs.useEmojiCompat && emoji != null) {
+            try {
+              emoji.process(flag)
+            }
+            catch(_: Throwable) {
+              flag
+            }
           } else {
-            append(flag)
+            flag
           }
+
+          append(flagToDisplay)
         }
 
         if(ccpAttrs.showCallingCode) {
