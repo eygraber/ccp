@@ -69,9 +69,8 @@ internal class CountryAdapter(
     val filteredList = countries
       .filter { country ->
         val name = countryCodePicker.context.getString(country.name).stripAccents()
-        val names = name.split(" ")
-        names.any {
-          it.startsWith(normalizedSearch, ignoreCase = true)
+        name.startsWith(normalizedSearch, ignoreCase = true) || name.split(" ").any {
+            it.startsWith(normalizedSearch, ignoreCase = true)
         }
       }
 
